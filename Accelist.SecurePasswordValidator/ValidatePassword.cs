@@ -47,7 +47,7 @@ namespace Accelist.SecurePasswordValidator
         {
             get
             {
-                return typeof(ValidatePassword).GetTypeInfo().Assembly.GetManifestResourceStream("Accelist.SecurePasswordValidator.rockyou3min9.zip");
+                return typeof(ValidatePassword).GetTypeInfo().Assembly.GetManifestResourceStream("Accelist.SecurePasswordValidator.rockyou-3min9.zip");
             }
         }
 
