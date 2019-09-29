@@ -5,6 +5,8 @@ namespace Accelist.SecurePasswordValidator.Tests
 {
     public class ValidatePasswordTests
     {
+        const int PasswordBlacklistLength = 531773;
+
         [Fact]
         public void PasswordBanlistAccessible()
         {
@@ -14,27 +16,27 @@ namespace Accelist.SecurePasswordValidator.Tests
         [Fact]
         public void PasswordBanlistIntact()
         {
-            Assert.Equal(277407, ValidatePassword.ForbiddenPasswords.Count);
+            Assert.Equal(PasswordBlacklistLength, ValidatePassword.ForbiddenPasswords.Count);
         }
 
         [Fact]
         public void PasswordBanlistIsImmutable()
         {
             ValidatePassword.ForbiddenPasswords.Add("THIS SHOULD RETURN NEW ImmutableHashSet INSTEAD OF MODIFYING EXISTING ONE!");
-            Assert.Equal(277407, ValidatePassword.ForbiddenPasswords.Count);
+            Assert.Equal(PasswordBlacklistLength, ValidatePassword.ForbiddenPasswords.Count);
         }
 
         [Fact]
         public void PasswordBanlistIsImmutable2()
         {
             ValidatePassword.ForbiddenPasswords.Remove("chocolate");
-            Assert.Equal(277407, ValidatePassword.ForbiddenPasswords.Count);
+            Assert.Equal(PasswordBlacklistLength, ValidatePassword.ForbiddenPasswords.Count);
         }
 
         [Fact]
-        public void LessThanNineCharactersLong()
+        public void LessThanEightCharactersLong()
         {
-            Assert.False(ValidatePassword.IsValidPassword("Blazor@!"), "Short password should be invalid.");
+            Assert.False(ValidatePassword.IsValidPassword("Blazor!"), "Short password should be invalid.");
         }
 
         [Fact]
@@ -74,9 +76,9 @@ namespace Accelist.SecurePasswordValidator.Tests
         }
 
         [Fact]
-        public void DifficultPassword()
+        public void EightCharactersLong()
         {
-            Assert.True(ValidatePassword.IsValidPassword("BlazorRocks!!@!"), "Difficult password should be valid.");
+            Assert.True(ValidatePassword.IsValidPassword("Blazor@!"), "Difficult password should be valid.");
         }
     }
 }

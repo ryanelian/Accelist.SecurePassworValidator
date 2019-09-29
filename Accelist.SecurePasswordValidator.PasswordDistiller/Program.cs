@@ -9,7 +9,7 @@ namespace Accelist.SecurePasswordValidator.PasswordDistiller
         {
             var n = 0;
 
-            using (var dump = new FileStream("rockyou-3min9.txt", FileMode.Create))
+            using (var dump = new FileStream("rockyou-3min8.txt", FileMode.Create))
             using (var file = new FileStream("rockyou-withcount.txt", FileMode.Open))
             using (var sw = new StreamWriter(dump))
             using (var sr = new StreamReader(file))
@@ -27,7 +27,7 @@ namespace Accelist.SecurePasswordValidator.PasswordDistiller
 
                     //Console.WriteLine($"{count}:\"{password}\"");
                     //Console.ReadLine();
-                    if (password.Length >= 9)
+                    if (password.Length >= 8)
                     {
                         sw.WriteLine(password);
                         n++;
